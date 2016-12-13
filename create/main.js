@@ -4,6 +4,8 @@
 
 // moduleName
 
+import path from 'path'
+
 // var inquirer = require('inquirer');
 var memFs = require('mem-fs');
 // var editor = require('mem-fs-editor');
@@ -12,7 +14,14 @@ var editor = require('mem-fs-editor');
 var store = memFs.create();
 var fs = editor.create(store);
 
-fs.read('templates/pageViewIndex.ejs')
+var basePath = path.resolve(__dirname, '..');
+console.log(path.resolve(__dirname, '..'));
+// fs.read(basePath + '/create/templates/pageViewIndex.ejs')
+
+
+fs.write('somefile.js', 'var a = 1;');
+
+
 
 // var File = require('vinyl');
 // var store = require('mem-fs').create();
