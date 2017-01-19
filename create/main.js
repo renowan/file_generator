@@ -1,31 +1,27 @@
-// import yeoman from 'yeoman-generator'
-// import chalk from 'chalk'
-// import yosay from 'yosay'
-
-// moduleName
-
 import path from 'path'
+import ejs from 'ejs'
+import fs from 'fs'
 
-// var inquirer = require('inquirer');
-var memFs = require('mem-fs');
-// var editor = require('mem-fs-editor');
-var editor = require('mem-fs-editor');
-//
-var store = memFs.create();
-var fs = editor.create(store);
+var dir = './tmp';
 
-var basePath = path.resolve(__dirname, '..');
-console.log(path.resolve(__dirname, '..'));
-// fs.read(basePath + '/create/templates/pageViewIndex.ejs')
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+
+var hello = fs.readFileSync('./create/templates/pageViewIndex.js', 'utf8');
+
+var hello2 = ejs.render(hello, {
+    moduleName:"myMyMy"
+});
+
+fs.writeFile(dir + "/a.js", hello2, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log("The file was saved!");
+});
 
 
-fs.write('somefile.js', 'var a = 1;');
-
-
-
-// var File = require('vinyl');
-// var store = require('mem-fs').create();
-//
 // var coffeeFile = new File({
 //   cwd: '/',
 //   base: '/test/',
